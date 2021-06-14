@@ -3,5 +3,5 @@
 <h3>What We Have Going On Here</h3>
 <p>- - - - - - - - - - - - - - - - - - - - - - - - - - -</p>
 <% @plants.each do |plant| %>
-<%= plant.name %> <br>
+<%= "#{plant.name} - Days to Harvest: #{plant.days_to_harvest}" %> <br>
 <% end %>

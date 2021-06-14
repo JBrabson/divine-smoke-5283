@@ -1,0 +1,7 @@
+<h1>Where The Green (and other colors) Things Are</h1>
+<% @gardens.each do |garden| %>
+  <section id="garden-<%= garden.id %>">
+  <%= garden.name %> <%= link_to "What We've Got Growing", garden_path(garden.id) %>
+  </section
+  <br>
+<% end %>

@@ -6,7 +6,7 @@
   <h3> <%= "Plot Number: #{plot.number}" %> </h3>
     <p>Growing Here:</p> <% plot.plants.each do |plant| %>
     <section id="plant-<%= plant.id %>">
-      <%= plant.name %>
+      <%= plant.name %> <%= link_to "Send This Plant Packin' (Remove This Plant)", "/plots/#{plot.id}/plants/#{plant.id}", method: :delete %>
     </section>
     <% end %>
   </section>

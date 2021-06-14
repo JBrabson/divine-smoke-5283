@@ -21,14 +21,14 @@ RSpec.describe 'Garden Show Page' do
 
   it 'plants list is unique' do
     jennys = Garden.create!(name: "Jenny's Gargantuan Garden", organic: true)
-    plot1 = jennys.plots.create!(number: 2, size: "Medium", direction: "Easy to the East")
-    cucumber = plot2.plants.create!(name: "Cucumber", description: "English, Less bitter than the plain old", days_to_harvest: 3)
-    strawberry = plot2.plants.create!(name: "Strawberry", description: "Seeded, best in Spring", days_to_harvest: 5)
-    kale = plot3.plants.create!(name: "Kale", description: "Not good on taste buds, but good on health", days_to_harvest: 22)
-    plot1 = jennys.plots.create!(number: 1, size: "Small", direction: "Seein' South")
-    plot1.plants << cucumber
-    plot1.plants << strawberry
-    plot3.plants << cucumber
+    plot1 = jennys.plots.create!(number: 1, size: "Small", direction: "Easy to the East")
+    plot2 = jennys.plots.create!(number: 2, size: "Medium", direction: "Seein' South")
+    cucumber = plot1.plants.create!(name: "Cucumber", description: "English, Less bitter than the plain old", days_to_harvest: 3)
+    strawberry = plot1.plants.create!(name: "Strawberry", description: "Seeded, best in Spring", days_to_harvest: 5)
+    kale = plot2.plants.create!(name: "Kale", description: "Not good on taste buds, but good on health", days_to_harvest: 22)
+    plot1.plants << kale
+    plot2.plants << strawberry
+    plot2.plants << cucumber
 
     visit "/gardens/#{jennys.id}"
 

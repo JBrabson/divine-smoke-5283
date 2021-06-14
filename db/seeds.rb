@@ -1,7 +1,13 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Garden.destroy_all
+
+@nans = Garden.create!(name: "Nan's Nashville Garden", organic: true)
+@jennys = Garden.create!(name: "Jenny's Gargantuan Garden", organic: true)
+@bees = Garden.create!(name: "Bee's Knees Botanical", organic: false)
+@plot1 = @nans.plots.create!(number: 1, size: "Small", direction: "To the Wild West")
+@plot2 = @jennys.plots.create!(number: 2, size: "Medium", direction: "Easy to the East")
+@plot3 = @bees.plots.create!(number: 3, size: "Large", direction: "Due North (Where the Polar Bears Are)")
+@tomato = @plot1.plants.create!(name: "Tomato", description: "Romas, Thrive when watered adequately", days_to_harvest: 15)
+@lettuce = @plot1.plants.create!(name: "Lettuce", description: "Romaine, Better without Pesticides", days_to_harvest: 13)
+@cucumber = @plot2.plants.create!(name: "Cucumber", description: "English, Less bitter than the plain old", days_to_harvest: 3)
+@strawberry = @plot2.plants.create!(name: "Strawberry", description: "Seeded, best in Spring", days_to_harvest: 5)
+@kale = @plot3.plants.create!(name: "Kale", description: "Not good on taste buds, but good on health", days_to_harvest: 22)

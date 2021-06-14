@@ -15,7 +15,7 @@ RSpec.describe 'Plots Index Page' do
     visit "/plots"
   end
 
-  it "displays list of all plot numbers, with names of each plot's plants listed underneath each plot" do
+  it 'displays list of all plot numbers, with names of each plant specific to that plot listed underneath' do
     within("#plot-#{@plot1.id}") do
       expect(page).to have_content("Plot Number: #{@plot1.number}")
       expect(page).to have_content(@tomato.name)
@@ -42,5 +42,36 @@ RSpec.describe 'Plots Index Page' do
       expect(page).to_not have_content(@cucumber.name)
       expect(page).to_not have_content(@strawberry.name)
     end
+  end
+
+  describe 'Remove Plant from a Plot' do
+    it 'displays delete link next to each plant regardless of plot' do
+
+      within("#plant-#{@lettuce.id}") do
+        expect(page).to have_link "Send This Plant Packin' (Remove This Plant)"
+      end
+
+      within("#plant-#{@cucumber.id}") do
+        expect(page).to have_link "Send This Plant Packin' (Remove This Plant)"
+      end
+
+      within("#plant-#{@kale.id}") do
+        expect(page).to have_link "Send This Plant Packin' (Remove This Plant)"
+      end
+    end
+
+    it 'delete link will redirect to plot index page where deleted plant will no longer display under plot deleted from' do
+      within("#plant-#{@tomato.id}") do
+        click_link "Send This Plant Packin' (Remove This Plant)"
+      end
+
+      expect(current_path).to eq('/plots')
+        within("#plot-#{@plot1.id}") do
+          expect(page).to_not have_content(@tomato.name)
+          expect(page).to have_content(@lettuce.name)
+        end
+    end
+
+
   end
 end
